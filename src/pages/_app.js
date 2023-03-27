@@ -9,5 +9,6 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 export default function App({ Component, pageProps }) {
+    console.log("hej");
     return <Component {...pageProps} />;
 }
