@@ -1,10 +1,9 @@
-import React from "react";
-import Sidebar from "@/components/Sidebar";
+import Layout from "@/components/Layout";
 
 export default function index() {
     return (
         <Layout>
-            <div>hej från main sidan</div>
+            <div>yaooo</div>
         </Layout>
     );
 }

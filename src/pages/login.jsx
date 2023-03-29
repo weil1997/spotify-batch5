@@ -1,19 +1,18 @@
 import React from "react";
 import { accessUrl } from "../config";
 
-export default function login() {
+export default function Login() {
     return (
         <div className="py-10 text-center">
-            login
-            <h1 className="text-4xl font-bold mb-1">
-                Welcome to my Spotify Clone
+            <h1 className="front-bold mb-1 text-4xl">
+                Welcome to my Spotify clone
             </h1>
-            <p className="text-text-dimmed mb-10">
+            <p className="mb-5 text-text-dimmed">
                 Please sign in to use the app
             </p>
             <a
                 href={accessUrl}
-                className="py-1.5 px-5 bg-primary rounded-md text-lg font-semibold"
+                className="rounded-md bg-primary py-1.5 px-5 text-xl font-bold"
             >
                 Sign in
             </a>

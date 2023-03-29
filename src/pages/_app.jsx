@@ -1,7 +1,7 @@
-import { redirectURL } from "@/config";
 import "@/styles/globals.css";
 import SpotifyWebApi from "spotify-web-api-node";
-import { getAccessTokenFromUrl } from "../../utils/getAccessTokenFromUrl";
+import { redirectURL } from "@/config";
+import { getAccessTokenFromUrl } from "@/utils/getAccessTokenFromUrl";
 import { useRouter } from "next/router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -15,9 +15,9 @@ const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }) {
     const router = useRouter();
-    if (typeof window !== "undefined" && router.asPath !== "login") {
+    if (typeof window !== "undefined" && router.asPath !== "/login") {
         const accessToken =
-            getAccessTokenFromUrl() || sessionStorage.getItem("spotify key");
+            getAccessTokenFromUrl() || sessionStorage.getItem("spotify-key");
         console.log(accessToken);
 
         if (accessToken) {
@@ -27,10 +27,9 @@ export default function App({ Component, pageProps }) {
             router.replace("/login");
         }
     }
-
     return (
         <QueryClientProvider client={queryClient}>
-            <Component {...pageProps} />;
+            <Component {...pageProps} />
         </QueryClientProvider>
     );
 }
