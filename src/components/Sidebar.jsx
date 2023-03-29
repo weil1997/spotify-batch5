@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 export default function Sidebar() {
     const {
         data: playlists,
-        isloading,
+        isLoading,
         isError,
     } = useQuery({
         queryKey: ["playlists"],
@@ -20,8 +20,8 @@ export default function Sidebar() {
 
         return playlists.map((playlist) => (
             <Link
-                href={"/playlists/abc" + playlist.id}
-                className="transitions-colors block py-1 text-text-dimmed hover:text-text"
+                href={"/playlists/" + playlist.id}
+                className="  transitions-colors block py-1 text-text-dimmed hover:text-text"
                 key={playlist.id}
             >
                 {playlist.name}
