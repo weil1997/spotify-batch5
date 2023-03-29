@@ -13,6 +13,22 @@ export default function Sidebar() {
         queryFn: async () => (await spotifyApi.getUserPlaylists()).body.items,
     });
 
+    function renderPlaylists() {
+        if(isLoading )  return Array(10).fill(null).map(() => <div className=" mb-1.5 h-6 w-9/12 animate-pulse rounded-full bg-neutral-800" style={{width: Math.floor(math.random() * 40 + 40, '% ')}}>hej</div>)
+        
+        if (isError) return 'error...'
+
+        return playlists.map((playlist) => (
+            <Link
+                href={"/playlists/abc" + playlist.id}
+                className="transitions-colors block py-1 text-text-dimmed hover:text-text"
+                key={playlist.id}
+            >
+                {playlist.name}
+            </Link>
+        ))}
+    }
+
     return (
         <aside className="w-full max-w-xs overflow-y-scroll bg-bg p-6 ">
             <Link
@@ -23,18 +39,13 @@ export default function Sidebar() {
                 <p className="font-semibold">Home</p>
             </Link>
             <hr className="my-3 border-text-dimmed/50"></hr>
-            <div className="">
-                {'isLoading...'
-                    : playlists.map((playlist) => (
-                          <Link
-                              href="/playlist/abc"
-                              className="transitions-colors block py-1 text-text-dimmed hover:text-text"
-                          >
-                              {playlist.name}
-                          </Link>
-                      ))
-                   }
+            <div className=""{renderPlaylists()}/>
+
+                
+       
+                    
+                   
             </div>
         </aside>
     );
-}
+
