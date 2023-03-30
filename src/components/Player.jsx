@@ -57,6 +57,7 @@ export default function Player() {
 
             player.connect();
         };
+        spotifyApi.skipToPrevious;
     }, []);
 
     useEffect(() => {
