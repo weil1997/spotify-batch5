@@ -22,18 +22,15 @@ export default function Player() {
 
         window.onSpotifyWebPlaybackSDKReady = () => {
             const player = new window.Spotify.Player({
-                name: "Spotify Playback",
+                name: "Techover player",
                 getOAuthToken: (cb) => {
                     cb(token);
                 },
                 volume: 0.5,
             });
-            console.log("player: ", player);
 
             player.addListener("ready", ({ device_id }) => {
-                console.log("Ready with device_id: ", device_id);
                 setDevice(device_id);
-                setLocalPlayer(player);
             });
 
             player.addListener("player_state_changed", (state) => {
@@ -41,7 +38,6 @@ export default function Player() {
                     return;
                 }
 
-                console.log("state changed:", state);
                 setTrack(state.track_window.current_track);
                 setIsPaused(state.paused);
                 setPosition(state.position);
@@ -55,14 +51,13 @@ export default function Player() {
                 });
             });
 
+            setLocalPlayer(player);
             player.connect();
         };
-        spotifyApi.skipToPrevious;
     }, []);
 
     useEffect(() => {
         if (!localPlayer) return;
-
         localPlayer.connect();
 
         return () => {
@@ -70,8 +65,10 @@ export default function Player() {
         };
     }, [localPlayer]);
 
-    if (!isActive || !localPlayer || !track)
-        return <div>No active session</div>;
+    console.log(localPlayer);
+
+    if (!isActive || !track || !localPlayer)
+        return <div>no player, please connect</div>;
 
     return (
         <div>
@@ -82,13 +79,14 @@ export default function Player() {
                 }}
             >
                 <div className="flex flex-1 items-center">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                        src={track.album.images[0].url}
+                        src={track.album.images[0]?.url}
                         alt=""
-                        className="mr-2 h-12 w-12 flex-shrink-0"
+                        className="mr-4 h-14 w-14 flex-shrink-0"
                     />
                     <div>
-                        <h4 className="">{track.name}</h4>
+                        <h4 className="text-sm">{track.name}</h4>
                         <p className="text-xs text-text-dimmed">
                             {track.artists[0].name}
                         </p>
@@ -110,6 +108,7 @@ export default function Player() {
                 setPlayerOverlayIsOpen={setPlayerOverlayIsOpen}
                 playerOverlayIsOpen={playerOverlayIsOpen}
                 track={track}
+                player={localPlayer}
                 isPaused={isPaused}
                 position={position}
             />

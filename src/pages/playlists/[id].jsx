@@ -51,7 +51,7 @@ export default function Playlist() {
                     {playlist.tracks.items.map((item, index) => (
                         <div
                             key={item.id}
-                            className="group grid grid-cols-[auto_1fr_1fr_auto] items-center gap-3 rounded-md py-1.5 px-6 text-sm hover:bg-text-dimmed/10 md:grid-cols-[auto_1fr_auto_]"
+                            className="group grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-md py-1.5 px-6 text-sm hover:bg-text-dimmed/10 md:grid-cols-[auto_1fr_1fr_auto]"
                             onClick={async () => {
                                 await spotifyApi.play({
                                     context_uri: `spotify:playlist:${item.router.query.id}`,
