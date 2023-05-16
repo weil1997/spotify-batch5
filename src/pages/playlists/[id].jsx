@@ -7,6 +7,7 @@ import { formatTime } from "@/utils/formatTime";
 import { Clock } from "react-feather";
 import { Play } from "react-feather";
 import Link from "next/link";
+import Image from "next/image";
 export default function Playlist() {
   const router = useRouter();
   const {
@@ -105,7 +106,7 @@ export default function Playlist() {
                     <Play className="hidden h-5 w-5 fill-text-dimmed group-hover:block" />
                   </div>
                   <div className="flex items-center  gap-4 overflow-hidden">
-                    <img
+                    <Image
                       src={item.track.album.images[0]?.url}
                       alt=""
                       className="h-12 w-12"
