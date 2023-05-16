@@ -37,7 +37,7 @@ export default function Playlist() {
         {isLoading ? (
           <div className="animation-pilse h-28 w-28 flex-shrink-0 bg-neutral-600 md:h-60 md:w-60"></div>
         ) : (
-          <img
+          <Image
             src={playlist.images[0]?.url}
             alt="playlist image"
             className="h-28 w-28 flex-shrink-0 md:h-60 md:w-60"
